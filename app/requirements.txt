@@ -1,0 +1,5 @@
+Keras==2.0.8
+opencv-python>=3.1.0
+tensorflow-gpu==1.15.0
+numpy==1.19.5
+joblib==0.10.3

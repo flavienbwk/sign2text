@@ -46,7 +46,9 @@ label_dict = {pos: letter
 # ====================== Live loop ======================
 # =======================================================
 
-video_capture = cv2.VideoCapture("test.mp4")
+video_capture = cv2.VideoCapture(-1)
+video_capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 fps = 0
 start = time.time()
@@ -66,7 +68,7 @@ while True:
     # Crop + process captured frame
     if frame is None:
        break
-    hand = frame[83:650, 314:764]
+    hand = frame[83:650, 314:764] # frame[83:650, 314:764]
     hand = square_pad(hand)
     hand = preprocess_for_vgg(hand)
 

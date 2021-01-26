@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+
+  interface:
+    build: .
+    command: python3.7 /usr/app/live_demo.py -m xception
+    volumes:
+      - ./app:/usr/app:ro
+      - ./models/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5:/root/.keras/models/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5:ro
+      - ./models/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5:/root/.keras/models/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5:ro
+      - ./models/xception_weights_tf_dim_ordering_tf_kernels_notop.h5:/root/.keras/models/xception_weights_tf_dim_ordering_tf_kernels_notop.h5:ro
+      - ./models/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5:/root/.keras/models/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1
+    environment:
+      DISPLAY: $DISPLAY
+      QT_X11_NO_MITSHM: 1
+      QT_DEBUG_PLUGINS: 1
+      QT_AUTO_SCREEN_SET_FACTOR: 1
